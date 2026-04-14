@@ -1,0 +1,21 @@
+{
+  "name": "safejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "AGPL-3.0-only",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "isolated-vm": "^5.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0"
+  },
+  "bin": {
+    "safejs": "./src/index.js"
+  }
+}
