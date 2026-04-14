@@ -12,22 +12,21 @@ await jail.set(
     '__internal_consoleLog',
     new ivm.Reference((level, msg) => {
         if (level === 0) {
-            process.stdout.write(`[INFO]  ${msg}`);
+            process.stdout.write(`[INFO]  ${msg}\n`);
         } else if (level === 1) {
-            process.stderr.write(`[ERROR] ${msg}`);
+            process.stderr.write(`[ERROR] ${msg}\n`);
         }
     })
 );
 
 await context.eval(`
     globalThis.console = {
-        info: (msg) => __internal_consoleLog(0, msg),
-        error: (msg) => __internal_consoleLog(1, msg)
+        info: (msg) => __internal_consoleLog.apply(undefined, [0, msg]),
+        error: (msg) => __internal_consoleLog.apply(undefined, [1, msg])
     }
 `);
 
 import * as fs from 'fs';
-import { loadEnvFile } from 'process';
 
 const code = fs.readFileSync(process.argv[2], "utf-16le");
 
